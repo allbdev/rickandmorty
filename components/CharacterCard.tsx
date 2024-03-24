@@ -163,7 +163,7 @@ export const FullInfoCharacterCard = ({
   return (
     <>
       <Title text={name}/>
-      <Container className={'bg-gray-1 rounded-lg p-[1.5rem]'}>
+      <Container className={'bg-gray-1 rounded-lg p-[1.5rem] mb-[4rem]'}>
         <div className={'flex flex-col gap-[2rem] items-center'}>
           <div className={'flex flex-row flex-wrap gap-[2rem] items-center justify-center w-full'}>
             <div className={'relative h-[300px] w-[300px] max-w-full'}>
