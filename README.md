@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Rick and Morty World
+
+This project is made with NextJs and typescript and is graphql apollo/client to consume the Rick And Morty api: https://rickandmortyapi.com
 
 ## Getting Started
 

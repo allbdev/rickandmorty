@@ -3,17 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+  --primary: #8FC4D9;
+  --secondary: #7ABF9F;
 }
 
 body {
@@ -30,4 +24,58 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+html, body {
+  min-height: 100dvh;
+  height: fit-content;
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  min-height: calc(100dvh - 45px);
+  height: fit-content;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+p, a {
+  font-size: 1rem;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    @apply text-secondary;
+
+    * {
+      @apply text-secondary;
+    }
+  }
+}
+
+* {
+  color: white;
 }
