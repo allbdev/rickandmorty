@@ -6,7 +6,7 @@ This project is made with NextJs and typescript and use graphql apollo/client to
 
 This project is available to see in: https://rickandmorty-alb-dev.vercel.app/
 
-First, run the development server:
+Or you can run localy by running:
 
 ```bash
 npm run dev
