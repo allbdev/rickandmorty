@@ -1,6 +1,6 @@
 # Rick and Morty World
 
-This project is made with NextJs and typescript and is graphql apollo/client to consume the Rick And Morty api: https://rickandmortyapi.com
+This project is made with NextJs and typescript and use graphql apollo/client to consume the Rick And Morty api: https://rickandmortyapi.com
 
 ## Getting Started
 
