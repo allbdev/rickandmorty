@@ -1,12 +1,12 @@
 "use client"
-import Image from "next/image";
 import Link from "next/link";
+import {FaExternalLinkAlt} from "react-icons/fa";
 
 import {Character, CharacterFullInfo, Episode, SliderItemCharacterProps} from "@/utils/types";
 
 import {Container} from "@/components/Container";
 import {Title} from "@/components/text";
-import {FaExternalLinkAlt} from "react-icons/fa";
+import {LazyLoadedImage} from "@/components/LazyLoadImage";
 
 const statusBullet = (status: string) => `mb-[6px] flex flex-row items-center before:mr-[5px] before:content-[''] before:w-[7px] before:h-[7px] before:rounded-[10px] ${status === 'Dead' ? 'before:bg-[red]' : status === 'Alive' ? 'before:bg-[green]' : 'before:bg-[orange]'}`
 
@@ -25,11 +25,9 @@ export const CharacterCard = ({
   return (
     <article className={'flex flex-col bg-gray-2 rounded-md'}>
       <div className={'relative h-[250px]'}>
-        <Image
+        <LazyLoadedImage
           src={image}
           alt={name}
-          fill={true}
-          className={'object-cover object-center rounded-t-md'}
         />
       </div>
       <div className={'flex flex-col p-[8px]'}>
@@ -86,11 +84,9 @@ export const SliderItemCharacter = ({
         <h2 className={'text-center mb-[10px]'}>{name}</h2>
         <div className={'flex flex-row flex-wrap gap-[1rem] justify-center'}>
           <div className={'relative h-[200px] w-[200px]'}>
-            <Image
+            <LazyLoadedImage
               src={image}
               alt={name}
-              fill={true}
-              className={'object-cover object-center rounded-sm'}
             />
           </div>
           <div className={'flex-1'}>
@@ -167,11 +163,9 @@ export const FullInfoCharacterCard = ({
         <div className={'flex flex-col gap-[2rem] items-center'}>
           <div className={'flex flex-row flex-wrap gap-[2rem] items-center justify-center w-full'}>
             <div className={'relative h-[300px] w-[300px] max-w-full'}>
-              <Image
+              <LazyLoadedImage
                 src={image}
                 alt={name}
-                fill={true}
-                className={'object-cover object-center rounded-sm'}
               />
             </div>
             <div>

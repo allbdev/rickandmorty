@@ -57,3 +57,8 @@ export interface CharacterFullInfo {
     air_date: string,
   }[]
 }
+
+export interface LazyLoadedImageProps {
+  src: string
+  alt: string
+}
