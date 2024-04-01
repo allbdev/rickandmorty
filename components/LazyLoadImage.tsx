@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {LazyLoadedImageProps} from "@/utils/types";
 import Image from "next/image";
 
-export const LazyLoadedImage = ({ src, alt }: LazyLoadedImageProps) => {
+export const LazyLoadedImage = ({ src, alt, className = '' }: LazyLoadedImageProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const imgRef = useRef(null);
 
@@ -33,7 +33,7 @@ export const LazyLoadedImage = ({ src, alt }: LazyLoadedImageProps) => {
       src={isVisible ? src : '/loading.gif'}
       alt={alt}
       fill={true}
-      className={'object-cover object-center rounded-t-md'}
+      className={`object-cover object-center ${className}`}
     />
   );
 }

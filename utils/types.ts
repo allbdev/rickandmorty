@@ -22,8 +22,6 @@ export interface Character {
 
 export interface CharsSliderProps {
   initialData: Character[]
-  total: number
-  lastPage: number
 }
 
 export interface SliderItemCharacterProps extends Character {
@@ -61,4 +59,27 @@ export interface CharacterFullInfo {
 export interface LazyLoadedImageProps {
   src: string
   alt: string
+  className?: string
+}
+
+export interface LocationProps {
+  id: number,
+  name: string,
+  type: string,
+  dimension: string,
+  residents: {
+    id: string,
+    name: string,
+    status: string,
+    species: string,
+    type: string
+  }[]
+}
+
+export interface LocationsSliderProps {
+  initialData: LocationProps[]
+}
+
+export interface SliderItemLocationProps extends LocationProps {
+  customMargin?: string
 }

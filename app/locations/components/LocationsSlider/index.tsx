@@ -4,16 +4,16 @@ import {FaSearch} from "react-icons/fa";
 import {useDebouncedCallback} from "use-debounce";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import {INFO_CHARACTERS} from "@/services/queries";
+import {INFO_LOCATIONS} from "@/services/queries";
 import client from "@/services/clientSideRequest";
 
-import {Character, CharsSliderProps} from "@/utils/types";
+import {LocationProps, LocationsSliderProps} from "@/utils/types";
 
 import {Container} from "@/components/Container";
-import {SliderItemCharacter} from "@/components/CharacterCard";
+import {LocationSliderCard} from "@/components/LocationCard";
 
-export const CharsSlider = ({initialData}: CharsSliderProps) => {
-  const [data, setData] = useState<Character[]>(initialData)
+export const LocationsSlider = ({initialData}: LocationsSliderProps) => {
+  const [data, setData] = useState<LocationProps[]>(initialData)
   const [page, setPage] = useState(2)
   const [searchTerm, setSearchTerm] = useState('')
   const [showSearch, setShowSearch] = useState(false)
@@ -21,7 +21,7 @@ export const CharsSlider = ({initialData}: CharsSliderProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const fetchData = useCallback(async (paramPage?: number, paramSearch?: string) => {
-    const { data, error } = await client.query({ query: INFO_CHARACTERS, variables: {
+    const { data, error } = await client.query({ query: INFO_LOCATIONS, variables: {
         page: paramPage ?? page,
         name: paramSearch ?? searchTerm
       }});
@@ -30,10 +30,10 @@ export const CharsSlider = ({initialData}: CharsSliderProps) => {
       return
     }
 
-    const characters = data.characters.results as Character[]
-    const {next, prev: prevFromReq} = data.characters.info
+    const locations = data.locations.results as LocationProps[]
+    const {next, prev: prevFromReq} = data.locations.info
 
-    setData(prev => prevFromReq === null ? characters : ([...prev, ...characters]))
+    setData(prev => prevFromReq === null ? locations : ([...prev, ...locations]))
     setPage(next)
   }, [page, searchTerm, setData, setPage])
 
@@ -59,7 +59,7 @@ export const CharsSlider = ({initialData}: CharsSliderProps) => {
         <input
           ref={inputRef}
           onChange={(e) => debounced(e.target.value)}
-          placeholder="Enter a character's name"
+          placeholder="Enter a location's name"
           className={`bg-transparent flex-1 max-w-[300px] border-b border-white !outline-none px-[10px] pb-[3px] pt-[0] transition-all ${showSearch ? 'opacity-100' : 'opacity-0'}`}
         />
         <button
@@ -85,7 +85,9 @@ export const CharsSlider = ({initialData}: CharsSliderProps) => {
         }
       >
         {
-          data.map((char, index) => <SliderItemCharacter {...char} customMargin={index === data.length - 1 ? '0' : '8rem'} key={index}/>)
+          data.map((location, index) => (
+            <LocationSliderCard key={index} customMargin={index === data.length - 1 ? '0' : '8rem'} {...location}/>
+          ))
         }
       </InfiniteScroll>
     </>

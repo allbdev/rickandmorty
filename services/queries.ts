@@ -62,4 +62,30 @@ const INFO_CHARACTER = gql`
   }
 `;
 
-export {INFO_CHARACTERS, INFO_CHARACTER};
+const INFO_LOCATIONS = gql`
+  query($page: Int, $name: String) {
+    locations(page: $page, filter: {name: $name}) {
+      info {
+        count,
+        pages,
+        next,
+        prev
+      }
+      results {
+        id,
+        name,
+        type,
+        dimension,
+        residents {
+          id,
+          name,
+          status,
+          species,
+          type
+        }
+      }
+    }
+  }
+`;
+
+export {INFO_CHARACTERS, INFO_CHARACTER, INFO_LOCATIONS};

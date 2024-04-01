@@ -1,7 +1,7 @@
-import {INFO_CHARACTERS} from "@/services/queries";
+import {INFO_CHARACTERS, INFO_LOCATIONS} from "@/services/queries";
 import {getClient} from "@/services";
 import {Container} from "@/components/Container";
-import {Character} from "@/utils/types";
+import {Character, LocationProps} from "@/utils/types";
 import {CharacterCard} from "@/components/CharacterCard";
 import {randomNumber, shuffleArray} from "@/utils/utils";
 import Link from "next/link";
@@ -13,12 +13,17 @@ export default async function Home() {
     page: randomNumber(1, 20)
   }});
 
+  const { data: locationsData, error: locationsError } = await getClient().query({ query: INFO_LOCATIONS, variables: {
+    page: randomNumber(1, 7)
+  }});
+
   const characters = shuffleArray(data.characters.results.slice(0, 8)) as Character[]
+  const locations = shuffleArray(locationsData.locations.results.slice(0, 8)) as LocationProps[]
 
   return (
     <main>
       {
-        error ? (
+        error || locationsError ? (
             <p>an error occurred...</p>
         ) : (
           <>
@@ -56,6 +61,25 @@ export default async function Home() {
               </Container>
               <Container className={'flex justify-end mt-[2rem]'}>
                 <Link href={'/characters'} className={'w-fit'}>
+                  See all
+                </Link>
+              </Container>
+            </section>
+            <section className={'bg-gray-1 w-full py-[3rem] mb-[8rem]'}>
+              <h2 className={'text-center mb-[2rem]'}>Locations</h2>
+              <Container>
+                <ul>
+                  {
+                    locations.map((location, index) => (
+                      <li key={index}>
+                        id: {location.id} - {location.name}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </Container>
+              <Container className={'flex justify-end mt-[2rem]'}>
+                <Link href={'/locations'} className={'w-fit'}>
                   See all
                 </Link>
               </Container>

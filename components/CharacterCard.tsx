@@ -28,6 +28,7 @@ export const CharacterCard = ({
         <LazyLoadedImage
           src={image}
           alt={name}
+          className={'rounded-t-md'}
         />
       </div>
       <div className={'flex flex-col p-[8px]'}>
@@ -87,6 +88,7 @@ export const SliderItemCharacter = ({
             <LazyLoadedImage
               src={image}
               alt={name}
+              className={'rounded-md'}
             />
           </div>
           <div className={'flex-1'}>
@@ -166,6 +168,7 @@ export const FullInfoCharacterCard = ({
               <LazyLoadedImage
                 src={image}
                 alt={name}
+                className={'rounded-md'}
               />
             </div>
             <div>

@@ -11,8 +11,6 @@ export default async function Characters() {
     }});
 
   const characters = data.characters.results as Character[]
-  const lastPage = data.characters.info.pages
-  const total = data.characters.info.count
 
   return (
     <main>
@@ -22,7 +20,7 @@ export default async function Characters() {
         ) : (
           <>
             <Title text={'Characters'}/>
-            <CharsSlider initialData={characters} total={total} lastPage={lastPage}/>
+            <CharsSlider initialData={characters}/>
           </>
         )
       }
