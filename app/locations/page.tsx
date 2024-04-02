@@ -11,7 +11,6 @@ export default async function Locations() {
     }});
 
   const locations = data.locations.results as LocationProps[]
-  const total = data.locations.info.count
 
   return (
     <main>
@@ -21,7 +20,7 @@ export default async function Locations() {
         ) : (
           <>
             <Title text={'Locations'}/>
-            <LocationsSlider initialData={locations} total={total}/>
+            <LocationsSlider initialData={locations}/>
           </>
         )
       }
