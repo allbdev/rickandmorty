@@ -75,7 +75,7 @@ export const LocationsSlider = ({initialData}: LocationsSliderProps) => {
         hasMore={!!page}
         loader={
           <p className={'text-center my-[2rem]'}>
-            <b>Loading...</b>
+            <b>Loading ...</b>
           </p>
         }
         endMessage={
