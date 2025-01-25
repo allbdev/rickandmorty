@@ -6,8 +6,8 @@ import "./globals.css";
 import {Footer} from "@/components/Footer";
 
 const robotoMono = Roboto_Mono({
-  weight: ['400', '500', '600', '700'],
-  subsets: ["latin"]
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/favicon.ico',
-        href: '/favicon.ico',
-      }
+        url: "/favicon.ico",
+        href: "/favicon.ico",
+      },
     ],
   },
 };
@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={robotoMono.className}>
-        <div className={'bg-main-bg fixed h-[100dvh] w-[100dvw] top-0 left-0 z-[-1] bg-center'}/>
+        <div className={"bg-main-bg fixed h-[100dvh] w-[100dvw] top-0 left-0 z-[-1] bg-center"}/>
         {children}
         <Footer/>
       </body>

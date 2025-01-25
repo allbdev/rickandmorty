@@ -7,55 +7,58 @@ import {Character, CharacterFullInfo, Episode, SliderItemCharacterProps} from "@
 import {Container} from "@/components/Container";
 import {Title} from "@/components/text";
 import {LazyLoadedImage} from "@/components/LazyLoadImage";
-
-const statusBullet = (status: string) => `mb-[6px] flex flex-row items-center before:mr-[5px] before:content-[''] before:w-[7px] before:h-[7px] before:rounded-[10px] ${status === 'Dead' ? 'before:bg-[red]' : status === 'Alive' ? 'before:bg-[green]' : 'before:bg-[orange]'}`
+ 
+const statusBullet = (status: string) => 
+  `mb-[6px] flex flex-row items-center before:mr-[5px] before:content-[''] 
+  before:w-[7px] before:h-[7px] before:rounded-[10px] ${status === "Dead" ? 
+    "before:bg-[red]" : status === "Alive" ? "before:bg-[green]" : "before:bg-[orange]"}`
 
 export const CharacterCard = ({
-                                id,
-                                name,
-                                image,
-                                species,
-                                status,
-                                gender,
-                                type,
-                                location
-                              }: Character) => {
+  id,
+  name,
+  image,
+  species,
+  status,
+  gender, 
+  type,
+  location,
+}: Character) => {
   const {name: localName} = location
 
   return (
-    <article className={'flex flex-col bg-gray-2 rounded-md'}>
-      <div className={'relative h-[250px]'}>
+    <article className={"flex flex-col bg-gray-2 rounded-md"}>
+      <div className={"relative h-[250px]"}>
         <LazyLoadedImage
           src={image}
           alt={name}
-          className={'rounded-t-md'}
+          className={"rounded-t-md"}
         />
       </div>
-      <div className={'flex flex-col p-[8px]'}>
+      <div className={"flex flex-col p-[8px]"}>
         <Link
-          className={'w-fit'}
+          className={"w-fit"}
           href={`/characters/${id}`}
         >
-          <h3 className={'w-fit'}>{name}</h3>
+          <h3 className={"w-fit"}>{name}</h3>
         </Link>
         <div className={`${statusBullet(status)}`}>
           <p
             title={`${status} - ${species}, ${gender}`}
-            className={`flex-1 capitalize text-[.8rem] text-ellipsis overflow-hidden whitespace-nowrap`}
+            className={"flex-1 capitalize text-[.8rem] text-ellipsis overflow-hidden whitespace-nowrap"}
           >
             {status} - {species}, {gender}
           </p>
         </div>
         {
           (!!type && type.length > 0) && (
-            <div className={'mb-[6px]'}>
-              <p className={'text-[.7rem] text-[gray]'}>Considers as:</p>
+            <div className={"mb-[6px]"}>
+              <p className={"text-[.7rem] text-[gray]"}>Considers as:</p>
               <p>- {type}</p>
             </div>
           )
         }
         <div>
-          <p className={'text-[.7rem] text-[gray]'}>Last location:</p>
+          <p className={"text-[.7rem] text-[gray]"}>Last location:</p>
           <p>- {localName}</p>
         </div>
       </div>
@@ -64,64 +67,64 @@ export const CharacterCard = ({
 }
 
 export const SliderItemCharacter = ({
-                                      id,
-                                      name,
-                                      image,
-                                      species,
-                                      status,
-                                      gender,
-                                      type,
-                                      location,
-                                      episode,
-                                      customMargin = '0'
-                                    }: SliderItemCharacterProps) => {
+  id,
+  name,
+  image,
+  species,
+  status,
+  gender,
+  type,
+  location,
+  episode,
+  customMargin = "0",
+}: SliderItemCharacterProps) => {
   const {name: localName} = location
 
   const episodes = (episode || []).slice(0, 10) as Episode[]
 
   return (
     <section className={`mb-[${customMargin}]`}>
-      <Container className={'bg-gray-2 p-[10px] gap-[10px] rounded-md'}>
-        <h2 className={'text-center mb-[10px]'}>{name}</h2>
-        <div className={'flex flex-row flex-wrap gap-[1rem] justify-center'}>
-          <div className={'relative h-[200px] w-[200px]'}>
+      <Container className={"bg-gray-2 p-[10px] gap-[10px] rounded-md"}>
+        <h2 className={"text-center mb-[10px]"}>{name}</h2>
+        <div className={"flex flex-row flex-wrap gap-[1rem] justify-center"}>
+          <div className={"relative h-[200px] w-[200px]"}>
             <LazyLoadedImage
               src={image}
               alt={name}
-              className={'rounded-md'}
+              className={"rounded-md"}
             />
           </div>
-          <div className={'flex-1'}>
+          <div className={"flex-1"}>
             <div className={`${statusBullet(status)}`}>
               <p
                 title={`${status} - ${species}, ${gender}`}
-                className={`flex-1 capitalize text-ellipsis overflow-hidden whitespace-nowrap`}
+                className={"flex-1 capitalize text-ellipsis overflow-hidden whitespace-nowrap"}
               >
                 {status} - {species}, {gender}
               </p>
             </div>
             {
               (!!type && type.length > 0) && (
-                <div className={'mb-[6px]'}>
-                  <p className={'text-[.8rem] text-[gray]'}>Considers as:</p>
+                <div className={"mb-[6px]"}>
+                  <p className={"text-[.8rem] text-[gray]"}>Considers as:</p>
                   <p>- {type}</p>
                 </div>
               )
             }
-            <div className={'mb-[6px]'}>
-              <p className={'text-[.8rem] text-[gray]'}>Last location:</p>
+            <div className={"mb-[6px]"}>
+              <p className={"text-[.8rem] text-[gray]"}>Last location:</p>
               <p>- {localName}</p>
             </div>
             {
               episodes.length > 0 && (
-                <div className={'mb-[6px]'}>
-                  <p className={'text-[.8rem] text-[gray]'}>Episodes:</p>
+                <div className={"mb-[6px]"}>
+                  <p className={"text-[.8rem] text-[gray]"}>Episodes:</p>
                   <p>
                     {
                       episodes.map((episode, index) => {
                         return (
                           <span key={index}>
-                            {episode.name}{index === episodes.length - 1 ? '' : ', '}
+                            {episode.name}{index === episodes.length - 1 ? "" : ", "}
                           </span>
                         )
                       })
@@ -131,7 +134,7 @@ export const SliderItemCharacter = ({
               )
             }
             <Link
-              className={'w-fit flex flex-row items-center flex-wrap gap-[5px]'}
+              className={"w-fit flex flex-row items-center flex-wrap gap-[5px]"}
               href={`/characters/${id}`}
             >
               See more <FaExternalLinkAlt size={12}/>
@@ -144,16 +147,16 @@ export const SliderItemCharacter = ({
 }
 
 export const FullInfoCharacterCard = ({
-                                        name,
-                                        species,
-                                        status,
-                                        gender,
-                                        origin,
-                                        episode,
-                                        image,
-                                        type,
-                                        location
-                                      }: CharacterFullInfo) => {
+  name,
+  species,
+  status,
+  gender,
+  origin,
+  episode,
+  image,
+  type,
+  location,
+}: CharacterFullInfo) => {
   const {name: localName, dimension: localDimension, type: localType} = location
   const {name: originName, type: originType, dimension: originDimension} = origin
   const episodes = episode || []
@@ -161,41 +164,41 @@ export const FullInfoCharacterCard = ({
   return (
     <>
       <Title text={name}/>
-      <Container className={'bg-gray-1 rounded-lg p-[1.5rem] mb-[4rem]'}>
-        <div className={'flex flex-col gap-[2rem] items-center'}>
-          <div className={'flex flex-row flex-wrap gap-[2rem] items-center justify-center w-full'}>
-            <div className={'relative h-[300px] w-[300px] max-w-full'}>
+      <Container className={"bg-gray-1 rounded-lg p-[1.5rem] mb-[4rem]"}>
+        <div className={"flex flex-col gap-[2rem] items-center"}>
+          <div className={"flex flex-row flex-wrap gap-[2rem] items-center justify-center w-full"}>
+            <div className={"relative h-[300px] w-[300px] max-w-full"}>
               <LazyLoadedImage
                 src={image}
                 alt={name}
-                className={'rounded-md'}
+                className={"rounded-md"}
               />
             </div>
             <div>
               <div className={`${statusBullet(status)}`}>
                 <p
                   title={`${status} - ${species}, ${gender}`}
-                  className={`flex-1 capitalize text-ellipsis overflow-hidden whitespace-nowrap`}
+                  className={"flex-1 capitalize text-ellipsis overflow-hidden whitespace-nowrap"}
                 >
                   {status} - {species}, {gender}
                 </p>
               </div>
               {
                 (!!type && type.length > 0) && (
-                  <div className={'mb-[6px]'}>
-                    <p className={'text-[.8rem] text-[gray]'}>Considers as:</p>
+                  <div className={"mb-[6px]"}>
+                    <p className={"text-[.8rem] text-[gray]"}>Considers as:</p>
                     <p>- {type}</p>
                   </div>
                 )
               }
-              <div className={'mb-[6px]'}>
-                <p className={'text-[.8rem] text-[gray]'}>Origin info:</p>
+              <div className={"mb-[6px]"}>
+                <p className={"text-[.8rem] text-[gray]"}>Origin info:</p>
                 <p>- Name: {originName}</p>
                 <p>- Type: {originType}</p>
                 <p>- Dimension: {originDimension}</p>
               </div>
-              <div className={'mb-[6px]'}>
-                <p className={'text-[.8rem] text-[gray]'}>Last location info:</p>
+              <div className={"mb-[6px]"}>
+                <p className={"text-[.8rem] text-[gray]"}>Last location info:</p>
                 <p>- Name: {localName}</p>
                 <p>- Type: {localType}</p>
                 <p>- Dimension: {localDimension}</p>
@@ -204,8 +207,8 @@ export const FullInfoCharacterCard = ({
           </div>
           {
             episodes.length > 0 && (
-              <div className={'flex-1 w-full'}>
-                <p className={'text-[.8rem] text-[gray]'}>Episodes:</p>
+              <div className={"flex-1 w-full"}>
+                <p className={"text-[.8rem] text-[gray]"}>Episodes:</p>
                 <ul>
                   {
                     episodes.map((episode, index) => {

@@ -4,10 +4,10 @@ interface defaultContainerTypes {
     className?: string
 }
 
-export const Container = ({children, className = ''}: defaultContainerTypes) => {
-    return (
-        <div className={`max-w-default w-default m-default ${className}`}>
-            {children}
-        </div>
-    )
-}
+export const Container = ({children, className = ""}: defaultContainerTypes) => {
+  return (
+    <div className={`max-w-default w-default m-default ${className}`}>
+      {children}
+    </div>
+  )
+} 

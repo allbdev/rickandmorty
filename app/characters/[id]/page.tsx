@@ -15,8 +15,8 @@ export default async function Character({ params }: { params: { id: number } }) 
   //   console.log(e.networkError.result.errors)
   // }
   const { data, error } = await getClient().query({ query: INFO_CHARACTER, variables: {
-      id: params.id
-    }});
+    id: params.id,
+  }});
 
   const character = data.character as CharacterFullInfo
 
