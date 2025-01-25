@@ -15,16 +15,16 @@ import {SliderItemCharacter} from "@/components/CharacterCard";
 export const CharsSlider = ({initialData}: CharsSliderProps) => {
   const [data, setData] = useState<Character[]>(initialData)
   const [page, setPage] = useState(2)
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState("") 
   const [showSearch, setShowSearch] = useState(false)
 
   const inputRef = useRef<HTMLInputElement>(null)
 
   const fetchData = useCallback(async (paramPage?: number, paramSearch?: string) => {
     const { data, error } = await client.query({ query: INFO_CHARACTERS, variables: {
-        page: paramPage ?? page,
-        name: paramSearch ?? searchTerm
-      }});
+      page: paramPage ?? page,
+      name: paramSearch ?? searchTerm,
+    }});
 
     if (error) {
       return
@@ -55,16 +55,19 @@ export const CharsSlider = ({initialData}: CharsSliderProps) => {
 
   return (
     <>
-      <Container className={'flex flex-row gap-[2rem] items-center mb-[3rem] justify-end'}>
+      <Container className={"flex flex-row gap-[2rem] items-center mb-[3rem] justify-end"}>
         <input
           ref={inputRef}
           onChange={(e) => debounced(e.target.value)}
           placeholder="Enter a character's name"
-          className={`bg-transparent flex-1 max-w-[300px] border-b border-white !outline-none px-[10px] pb-[3px] pt-[0] transition-all ${showSearch ? 'opacity-100' : 'opacity-0'}`}
+          className={
+            `bg-transparent flex-1 max-w-[300px] border-b border-white !outline-none 
+            px-[10px] pb-[3px] pt-[0] transition-all ${showSearch ? "opacity-100" : "opacity-0"}`
+          }
         />
         <button
           onClick={() => setShowSearch(prev => !prev)}
-          className={'bg-transparent !border-none !outline-none'}
+          className={"bg-transparent !border-none !outline-none"}
         >
           <FaSearch size={20}/>
         </button>
@@ -74,18 +77,24 @@ export const CharsSlider = ({initialData}: CharsSliderProps) => {
         next={fetchData}
         hasMore={!!page}
         loader={
-          <p className={'text-center my-[2rem]'}>
+          <p className={"text-center my-[2rem]"}>
             <b>Loading...</b>
           </p>
         }
         endMessage={
-          <p className={'text-center my-[2rem]'}>
+          <p className={"text-center my-[2rem]"}>
             <b>{"That's"} all folks!</b>
           </p>
         }
       >
         {
-          data.map((char, index) => <SliderItemCharacter {...char} customMargin={index === data.length - 1 ? '0' : '8rem'} key={index}/>)
+          data.map((char, index) => (
+            <SliderItemCharacter 
+              {...char}
+              customMargin={index === data.length - 1 ? "0" : "8rem"} 
+              key={index}
+            />
+          ))
         }
       </InfiniteScroll>
     </>

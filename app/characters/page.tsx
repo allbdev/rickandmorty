@@ -7,19 +7,19 @@ import {Title} from "@/components/text";
 export const revalidate = 30
 export default async function Characters() {
   const { data, error } = await getClient().query({ query: INFO_CHARACTERS, variables: {
-      page: 1
-    }});
+    page: 1,
+  }});
 
   const characters = data.characters.results as Character[]
 
   return (
     <main>
       {
-        error ? (
+        error ? ( 
           <p>an error occurred...</p>
         ) : (
           <>
-            <Title text={'Characters'}/>
+            <Title text={"Characters"}/>
             <CharsSlider initialData={characters}/>
           </>
         )

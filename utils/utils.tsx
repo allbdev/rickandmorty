@@ -6,7 +6,6 @@ export const shuffleArray = (array: any[]) => {
   return array;
 }
 
-
 export const randomNumber = (min= 0, max= 10) => {
   min = Math.ceil(min);
   max = Math.floor(max);

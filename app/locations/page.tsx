@@ -4,11 +4,12 @@ import {LocationProps} from "@/utils/types";
 import {LocationsSlider} from "@/app/locations/components/LocationsSlider";
 import {Title} from "@/components/text";
 
-export const revalidate = 30
+export const revalidate = 30 
+
 export default async function Locations() {
   const { data, error } = await getClient().query({ query: INFO_LOCATIONS, variables: {
-      page: 1
-    }});
+    page: 1,
+  }});
 
   const locations = data.locations.results as LocationProps[]
 
@@ -19,7 +20,7 @@ export default async function Locations() {
           <p>an error occurred...</p>
         ) : (
           <>
-            <Title text={'Locations'}/>
+            <Title text={"Locations"}/>
             <LocationsSlider initialData={locations}/>
           </>
         )
